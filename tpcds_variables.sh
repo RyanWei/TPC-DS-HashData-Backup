@@ -7,8 +7,8 @@ GEN_DATA_SCALE="1"
 MULTI_USER_COUNT="1"
 
 # step options
-RUN_COMPILE_TPCDS="false"
-RUN_GEN_DATA="false"
+RUN_COMPILE_TPCDS="true"
+RUN_GEN_DATA="true"
 RUN_INIT="true"
 RUN_DDL="true"
 RUN_LOAD="true"
