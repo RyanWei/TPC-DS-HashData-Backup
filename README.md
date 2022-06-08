@@ -39,11 +39,11 @@ The original source code is from http://tpc.org/tpc_documents_current_versions/c
 
 ### Download and Install
 
-Visit the repo at https://github.com/pivotal/TPC-DS/releases and download the tarball to the `mdw` node.
+Visit the repo at https://github.com/RyanWei/TPC-DS-HashData/releases/and download the tarball to the `mdw` node. 
 
 ```bash
 ssh gpadmin@mdw
-curl -LO https://github.com/pivotal/TPC-DS/archive/refs/tags/v3.0.0.tar.gz
+curl -LO https://github.com/RyanWei/TPC-DS-HashData/archive/refs/tags/0.1.zip
 tar xzf v3.0.0.tar.gz
 mv TPC-DS-3.0.0 TPC-DS
 ```
