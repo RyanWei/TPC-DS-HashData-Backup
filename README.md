@@ -1,13 +1,10 @@
-# Decision Support Benchmark for Greenplum database.
+# Decision Support Benchmark for HashData database.
 
-This is the decision support (DS) benchmark derived from [TPC-DS](http://tpc.org/tpcds/).
-This repo contains automation of running the DS benchmark against an existing Greenplum cluster.
+This tool is based on the benchmark tool derived from [pivotal TPC-DS](https://github.com/pivotal/TPC-DS).
+This repo contains automation of running the DS benchmark on an existing Hashdata cluster.
 
 ## Context
-### Supported Greenplum Versions
 
-- [VMware Tanzu Greenplum](https://network.tanzu.vmware.com/products/vmware-tanzu-greenplum/) `4.3.x`, `5.x`, `6.x`
-- [Open Source Greenplum Databases](https://network.tanzu.vmware.com/products/greenplum-database/) `5.x`, `6.x`
 
 ### Supported TPC-DS Versions
 
@@ -18,22 +15,16 @@ TPC has published the following TPC-DS standards over time:
 | 2.1.0 | 2015/11/12 | http://www.tpc.org/tpc_documents_current_versions/pdf/tpc-ds_v2.1.0.pdf |
 | 1.3.1 (earliest) | 2015/02/19 | http://www.tpc.org/tpc_documents_current_versions/pdf/tpc-ds_v1.3.1.pdf |
 
-These are the combined versions of TPC-DS and Greenplum:
-| DS Benchmark Version | TPC-DS Benchmark Version | Greenplum Version |
-|-|-|-|
-| 3.0.0 | 2.1.0 | 4.3.x, 5.x, 6.x |
-| 2.2.x | 2.1.0 | 4.3.x, 5.x |
-| 2.x | 2.1.0 | 4.3.x |
 
 ## Setup
 ### Prerequisites
 
-1. A running Greenplum Database with `gpadmin` access
+1. A running HashData Database with `gpadmin` access
 2. `gpadmin` database is created
 3. `root` access on the master node `mdw` for installing dependencies
 4. `ssh` connections between `mdw` and the segment nodes `sdw1..n`
 
-All the following examples are using standard host name convention of Greenplum using `mdw` for master node, and `sdw1..n` for the segment nodes.
+All the following examples are using standard host name convention of HashData using `mdw` for master node, and `sdw1..n` for the segment nodes.
 
 ### TPC-DS Tools Dependencies
 
@@ -42,12 +33,6 @@ Install the dependencies on `mdw` for compiling the `dsdgen` (data generation) a
 ```bash
 ssh root@mdw
 yum -y install gcc make
-```
-
-Note:  If you are using Photon OS, then you need:
-
-```bash
-yum -y install build-essential
 ```
 
 The original source code is from http://tpc.org/tpc_documents_current_versions/current_specifications5.asp.
