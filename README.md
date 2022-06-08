@@ -44,8 +44,13 @@ Visit the repo at https://github.com/RyanWei/TPC-DS-HashData/releases/and downlo
 ```bash
 ssh gpadmin@mdw
 curl -LO https://github.com/RyanWei/TPC-DS-HashData/archive/refs/tags/0.1.zip
-tar xzf v3.0.0.tar.gz
-mv TPC-DS-3.0.0 TPC-DS
+unzip 0.1.zip
+mv TPC-DS-HashData-0.1 TPC-DS
+```
+Put the folder under /home/gpadmin/ and change owner to gpadmin.
+
+```
+chown -R gpadmin.gpadmin TPC-DS
 ```
 
 ## Usage
@@ -58,13 +63,13 @@ cd ~/TPC-DS
 ./tpcds.sh
 ```
 
-By default, it will run a scale 1 (1G) and with 2 concurrent users, from data generation to score computation.
+By default, it will run a scale 1 (1G) and with 1 concurrent users, from data generation to score computation.
 
 ### Configuration Options
 
 By changing the `tpcds_variables.sh`, we can control how this benchmark will run.
 
-This is the default example at [tpcds_variables.sh](https://github.com/pivotal/TPC-DS/blob/main/tpcds_variables.sh)
+This is the default example at [tpcds_variables.sh](https://github.com/RyanWei/TPC-DS-HashData/blob/main/tpcds_variables.sh)
 
 ```shell
 # environment options
@@ -72,7 +77,7 @@ ADMIN_USER="gpadmin"
 
 # benchmark options
 GEN_DATA_SCALE="1"
-MULTI_USER_COUNT="2"
+MULTI_USER_COUNT="1"
 
 # step options
 RUN_COMPILE_TPCDS="true"
