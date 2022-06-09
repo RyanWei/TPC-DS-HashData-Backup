@@ -1,3 +1,22 @@
+#ifndef lint
+static const char yysccsid[] = "@(#)yaccpar	1.9 (Berkeley) 02/21/93";
+#endif
+
+#define YYBYACC 1
+#define YYMAJOR 1
+#define YYMINOR 9
+#define YYPATCH 20130304
+
+#define YYEMPTY        (-1)
+#define yyclearin      (yychar = YYEMPTY)
+#define yyerrok        (yyerrflag = 0)
+#define YYRECOVERING() (yyerrflag != 0)
+
+#define YYPREFIX "yy"
+
+#define YYPURE 0
+
+#line 2 "qgen.y"
 /* 
  * Legal Notice 
  * 
@@ -32,24 +51,7 @@
  * 
  * Contributors:
  * Gradient Systems
- */ 
-
-#ifndef lint
-static char const 
-yyrcsid[] = "$FreeBSD: src/usr.bin/yacc/skeleton.c,v 1.28 2000/01/17 02:04:06 bde Exp $";
-#endif
-#include <stdlib.h>
-#define YYBYACC 1
-#define YYMAJOR 1
-#define YYMINOR 9
-#define YYLEX yylex()
-#define YYEMPTY -1
-#define yyclearin (yychar=(YYEMPTY))
-#define yyerrok (yyerrflag=0)
-#define YYRECOVERING() (yyerrflag!=0)
-static int yygrowstack();
-#define YYPREFIX "yy"
-#line 2 "qgen.y"
+ */
 #include "config.h"
 #include "porting.h"
 #include <stdlib.h>
@@ -98,15 +100,53 @@ ds_key_t i;
 char tmpstr[128];
 segment_t *pSegment;
 substitution_t *pSub;
-#line 75 "qgen.y"
+#line 87 "qgen.y"
+#ifdef YYSTYPE
+#undef  YYSTYPE_IS_DECLARED
+#define YYSTYPE_IS_DECLARED 1
+#endif
+#ifndef YYSTYPE_IS_DECLARED
+#define YYSTYPE_IS_DECLARED 1
 typedef union {
     int		intval;
     char	*strval;
 	expr_t	*exprval;
 	list_t  *list;
     } YYSTYPE;
-#line 96 "y.tab.c"
-#define YYERRCODE 256
+#endif /* !YYSTYPE_IS_DECLARED */
+#line 117 "y.tab.c"
+
+/* compatibility with bison */
+#ifdef YYPARSE_PARAM
+/* compatibility with FreeBSD */
+# ifdef YYPARSE_PARAM_TYPE
+#  define YYPARSE_DECL() yyparse(YYPARSE_PARAM_TYPE YYPARSE_PARAM)
+# else
+#  define YYPARSE_DECL() yyparse(void *YYPARSE_PARAM)
+# endif
+#else
+# define YYPARSE_DECL() yyparse(void)
+#endif
+
+/* Parameters sent to lex. */
+#ifdef YYLEX_PARAM
+# define YYLEX_DECL() yylex(void *YYLEX_PARAM)
+# define YYLEX yylex(YYLEX_PARAM)
+#else
+# define YYLEX_DECL() yylex(void)
+# define YYLEX yylex()
+#endif
+
+/* Parameters sent to yyerror. */
+#ifndef YYERROR_DECL
+#define YYERROR_DECL() yyerror(const char *s)
+#endif
+#ifndef YYERROR_CALL
+#define YYERROR_CALL(msg) yyerror(msg)
+#endif
+
+extern int YYPARSE_DECL();
+
 #define TOK_INT 257
 #define TOK_LITERAL 258
 #define TOK_PATH 259
@@ -151,7 +191,8 @@ typedef union {
 #define WITH 298
 #define UMINUS 299
 #define TCAST 300
-const short yylhs[] = {                                        -1,
+#define YYERRCODE 256
+static const short yylhs[] = {                           -1,
     0,   15,   15,   14,   14,   14,   14,   16,   16,   19,
    20,   20,   22,   22,   22,   25,   25,   25,   23,   23,
    23,   24,   24,   21,   21,   26,   29,   29,   29,   27,
@@ -163,7 +204,7 @@ const short yylhs[] = {                                        -1,
    30,   30,   30,   31,   31,   31,   31,   31,   31,   31,
    31,   31,   11,   11,   11,   11,   10,
 };
-const short yylen[] = {                                         2,
+static const short yylen[] = {                            2,
     1,    1,    2,    1,    1,    1,    1,    3,    5,    5,
     1,    2,    5,    7,    9,    1,    1,    1,    0,    1,
     3,    1,    3,    1,    2,    7,    1,    1,    1,    1,
@@ -175,7 +216,7 @@ const short yylen[] = {                                         2,
     1,    2,    2,    4,    5,    3,    3,    3,    3,    3,
     3,    3,    0,    2,    2,    2,    1,
 };
-const short yydefred[] = {                                      0,
+static const short yydefred[] = {                         0,
    81,    0,    0,    0,    0,    0,    2,    0,    4,    5,
     6,    7,    0,   80,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    3,   83,   79,   82,
@@ -197,13 +238,13 @@ const short yydefred[] = {                                      0,
    53,    0,    0,    0,    0,    0,    0,    0,   31,   78,
     0,   23,   14,   21,    0,    0,    0,    0,   26,   15,
 };
-const short yydgoto[] = {                                       6,
+static const short yydgoto[] = {                          6,
   128,  126,   65,   66,   67,   68,   69,   70,   92,   46,
    36,  112,  113,    7,    8,    9,   10,   11,   12,   73,
   105,   74,  172,  168,  173,  107,  155,  188,  156,   13,
    14,
 };
-const short yysindex[] = {                                    -35,
+static const short yysindex[] = {                       -35,
     0, -247, -250, -252, -233,    0,    0,  -35,    0,    0,
     0,    0,  -54,    0,  -21,  -14,  -18,  -44,  -45,  -29,
   -23,   -6,   -4,   -2,    6,  -53,    0,    0,    0,    0,
@@ -225,7 +266,7 @@ const short yysindex[] = {                                    -35,
     0,  -68,  -58,  145, -142,    0,  162,  166,    0,    0,
    84,    0,    0,    0, -144,  150,  157,    0,    0,    0,
 };
-const short yyrindex[] = {                                      0,
+static const short yyrindex[] = {                         0,
     0,    0,    0,    0,    0,    0,    0,  217,    0,    0,
     0,    0,    0,    0,    0,    0,    0,  140,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -247,14 +288,14 @@ const short yyrindex[] = {                                      0,
     0,    0,    0,    0,    0,   96,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,   98,    0,    0,
 };
-const short yygindex[] = {                                      0,
+static const short yygindex[] = {                         0,
     0,    0,  -73,    0,    0,    0,    0,    0,    0,  177,
   -28,  106,    0,  226,    0,    0,    0,    0,    0,    0,
     0,  163,    0,   57,   58,  141,   67,    0, -161,    0,
   232,
 };
 #define YYTABLESIZE 280
-const short yytable[] = {                                       5,
+static const short yytable[] = {                          5,
    10,   35,   35,   64,   29,   75,   45,  110,   18,  114,
    17,   95,  117,   15,  189,   76,   96,   72,  104,  121,
   122,  123,  124,  176,  127,  129,   19,   20,   21,   22,
@@ -284,7 +325,7 @@ const short yytable[] = {                                       5,
    60,    0,   10,   10,    0,   61,   62,    0,    0,    0,
    10,    0,    0,    0,    0,    0,    0,    0,    0,   63,
 };
-const short yycheck[] = {                                      35,
+static const short yycheck[] = {                         35,
     0,   46,   46,   91,   59,   34,   60,   81,  261,   83,
   261,   42,   86,  261,  176,  257,   47,  285,  286,   93,
    94,   95,   96,   44,   98,   99,  279,  280,  281,  282,
@@ -320,7 +361,8 @@ const short yycheck[] = {                                      35,
 #endif
 #define YYMAXTOKEN 300
 #if YYDEBUG
-const char * const yyname[] = {
+static const char *yyname[] = {
+
 "end-of-file",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,"'#'",0,"'%'",0,0,"'('","')'","'*'","'+'","','","'-'","'.'","'/'",0,0,0,0,0,0,
 0,0,0,0,"':'","';'","'<'","'='","'>'",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -337,7 +379,7 @@ const char * const yyname[] = {
 "KW_VARCHAR","KW_DECIMAL","KW_LIMIT","KW_LIMITA","KW_LIMITB","KW_LIMITC",
 "KW_ULIST","WITH","UMINUS","TCAST",
 };
-const char * const yyrule[] = {
+static const char *yyrule[] = {
 "$accept : workload_spec",
 "workload_spec : statement_list",
 "statement_list : statement",
@@ -436,105 +478,114 @@ const char * const yyrule[] = {
 "opt_substitution_suffix : '.' KW_END",
 "opt_substitution_suffix : '.' TOK_INT",
 "path : TOK_LITERAL",
+
 };
 #endif
-#if YYDEBUG
-#include <stdio.h>
-#endif
+
+int      yydebug;
+int      yynerrs;
+
+int      yyerrflag;
+int      yychar;
+YYSTYPE  yyval;
+YYSTYPE  yylval;
+
+/* define the initial stack-sizes */
 #ifdef YYSTACKSIZE
 #undef YYMAXDEPTH
-#define YYMAXDEPTH YYSTACKSIZE
+#define YYMAXDEPTH  YYSTACKSIZE
 #else
 #ifdef YYMAXDEPTH
 #define YYSTACKSIZE YYMAXDEPTH
 #else
 #define YYSTACKSIZE 10000
-#define YYMAXDEPTH 10000
+#define YYMAXDEPTH  500
 #endif
 #endif
-#define YYINITSTACKSIZE 200
-int yydebug;
-int yynerrs;
-int yyerrflag;
-int yychar;
-short *yyssp;
-YYSTYPE *yyvsp;
-YYSTYPE yyval;
-YYSTYPE yylval;
-short *yyss;
-short *yysslim;
-YYSTYPE *yyvs;
-int yystacksize;
-#line 559 "qgen.y"
+
+#define YYINITSTACKSIZE 500
+
+typedef struct {
+    unsigned stacksize;
+    short    *s_base;
+    short    *s_mark;
+    short    *s_last;
+    YYSTYPE  *l_base;
+    YYSTYPE  *l_mark;
+} YYSTACKDATA;
+/* variables for the parser stack */
+static YYSTACKDATA yystack;
+#line 571 "qgen.y"
 
 
-#line 459 "y.tab.c"
+#line 521 "y.tab.c"
+
+#if YYDEBUG
+#include <stdio.h>		/* needed for printf */
+#endif
+
+#include <stdlib.h>	/* needed for malloc, etc */
+#include <string.h>	/* needed for memset */
+
 /* allocate initial stack or double stack size, up to YYMAXDEPTH */
-static int yygrowstack()
+static int yygrowstack(YYSTACKDATA *data)
 {
-    int newsize, i;
+    int i;
+    unsigned newsize;
     short *newss;
     YYSTYPE *newvs;
 
-    if ((newsize = yystacksize) == 0)
+    if ((newsize = data->stacksize) == 0)
         newsize = YYINITSTACKSIZE;
     else if (newsize >= YYMAXDEPTH)
         return -1;
     else if ((newsize *= 2) > YYMAXDEPTH)
         newsize = YYMAXDEPTH;
-    i = yyssp - yyss;
-    newss = yyss ? (short *)realloc(yyss, newsize * sizeof *newss) :
-      (short *)malloc(newsize * sizeof *newss);
-    if (newss == NULL)
+
+    i = (int) (data->s_mark - data->s_base);
+    newss = (short *)realloc(data->s_base, newsize * sizeof(*newss));
+    if (newss == 0)
         return -1;
-    yyss = newss;
-    yyssp = newss + i;
-    newvs = yyvs ? (YYSTYPE *)realloc(yyvs, newsize * sizeof *newvs) :
-      (YYSTYPE *)malloc(newsize * sizeof *newvs);
-    if (newvs == NULL)
+
+    data->s_base = newss;
+    data->s_mark = newss + i;
+
+    newvs = (YYSTYPE *)realloc(data->l_base, newsize * sizeof(*newvs));
+    if (newvs == 0)
         return -1;
-    yyvs = newvs;
-    yyvsp = newvs + i;
-    yystacksize = newsize;
-    yysslim = yyss + newsize - 1;
+
+    data->l_base = newvs;
+    data->l_mark = newvs + i;
+
+    data->stacksize = newsize;
+    data->s_last = data->s_base + newsize - 1;
     return 0;
 }
 
-#define YYABORT goto yyabort
+#if YYPURE || defined(YY_NO_LEAKS)
+static void yyfreestack(YYSTACKDATA *data)
+{
+    free(data->s_base);
+    free(data->l_base);
+    memset(data, 0, sizeof(*data));
+}
+#else
+#define yyfreestack(data) /* nothing */
+#endif
+
+#define YYABORT  goto yyabort
 #define YYREJECT goto yyabort
 #define YYACCEPT goto yyaccept
-#define YYERROR goto yyerrlab
-
-#ifndef YYPARSE_PARAM
-#if defined(__cplusplus) || __STDC__
-#define YYPARSE_PARAM_ARG void
-#define YYPARSE_PARAM_DECL
-#else	/* ! ANSI-C/C++ */
-#define YYPARSE_PARAM_ARG
-#define YYPARSE_PARAM_DECL
-#endif	/* ANSI-C/C++ */
-#else	/* YYPARSE_PARAM */
-#ifndef YYPARSE_PARAM_TYPE
-#define YYPARSE_PARAM_TYPE void *
-#endif
-#if defined(__cplusplus) || __STDC__
-#define YYPARSE_PARAM_ARG YYPARSE_PARAM_TYPE YYPARSE_PARAM
-#define YYPARSE_PARAM_DECL
-#else	/* ! ANSI-C/C++ */
-#define YYPARSE_PARAM_ARG YYPARSE_PARAM
-#define YYPARSE_PARAM_DECL YYPARSE_PARAM_TYPE YYPARSE_PARAM;
-#endif	/* ANSI-C/C++ */
-#endif	/* ! YYPARSE_PARAM */
+#define YYERROR  goto yyerrlab
 
 int
-yyparse (YYPARSE_PARAM_ARG)
-    YYPARSE_PARAM_DECL
+YYPARSE_DECL()
 {
-    register int yym, yyn, yystate;
+    int yym, yyn, yystate;
 #if YYDEBUG
-    register const char *yys;
+    const char *yys;
 
-    if ((yys = getenv("YYDEBUG")))
+    if ((yys = getenv("YYDEBUG")) != 0)
     {
         yyn = *yys;
         if (yyn >= '0' && yyn <= '9')
@@ -544,18 +595,24 @@ yyparse (YYPARSE_PARAM_ARG)
 
     yynerrs = 0;
     yyerrflag = 0;
-    yychar = (-1);
+    yychar = YYEMPTY;
+    yystate = 0;
 
-    if (yyss == NULL && yygrowstack()) goto yyoverflow;
-    yyssp = yyss;
-    yyvsp = yyvs;
-    *yyssp = yystate = 0;
+#if YYPURE
+    memset(&yystack, 0, sizeof(yystack));
+#endif
+
+    if (yystack.s_base == NULL && yygrowstack(&yystack)) goto yyoverflow;
+    yystack.s_mark = yystack.s_base;
+    yystack.l_mark = yystack.l_base;
+    yystate = 0;
+    *yystack.s_mark = 0;
 
 yyloop:
-    if ((yyn = yydefred[yystate])) goto yyreduce;
+    if ((yyn = yydefred[yystate]) != 0) goto yyreduce;
     if (yychar < 0)
     {
-        if ((yychar = yylex()) < 0) yychar = 0;
+        if ((yychar = YYLEX) < 0) yychar = 0;
 #if YYDEBUG
         if (yydebug)
         {
@@ -575,13 +632,14 @@ yyloop:
             printf("%sdebug: state %d, shifting to state %d\n",
                     YYPREFIX, yystate, yytable[yyn]);
 #endif
-        if (yyssp >= yysslim && yygrowstack())
+        if (yystack.s_mark >= yystack.s_last && yygrowstack(&yystack))
         {
             goto yyoverflow;
         }
-        *++yyssp = yystate = yytable[yyn];
-        *++yyvsp = yylval;
-        yychar = (-1);
+        yystate = yytable[yyn];
+        *++yystack.s_mark = yytable[yyn];
+        *++yystack.l_mark = yylval;
+        yychar = YYEMPTY;
         if (yyerrflag > 0)  --yyerrflag;
         goto yyloop;
     }
@@ -592,36 +650,35 @@ yyloop:
         goto yyreduce;
     }
     if (yyerrflag) goto yyinrecovery;
-#if defined(lint) || defined(__GNUC__)
-    goto yynewerror;
-#endif
-yynewerror:
+
     yyerror("syntax error");
-#if defined(lint) || defined(__GNUC__)
+
     goto yyerrlab;
-#endif
+
 yyerrlab:
     ++yynerrs;
+
 yyinrecovery:
     if (yyerrflag < 3)
     {
         yyerrflag = 3;
         for (;;)
         {
-            if ((yyn = yysindex[*yyssp]) && (yyn += YYERRCODE) >= 0 &&
+            if ((yyn = yysindex[*yystack.s_mark]) && (yyn += YYERRCODE) >= 0 &&
                     yyn <= YYTABLESIZE && yycheck[yyn] == YYERRCODE)
             {
 #if YYDEBUG
                 if (yydebug)
                     printf("%sdebug: state %d, error recovery shifting\
- to state %d\n", YYPREFIX, *yyssp, yytable[yyn]);
+ to state %d\n", YYPREFIX, *yystack.s_mark, yytable[yyn]);
 #endif
-                if (yyssp >= yysslim && yygrowstack())
+                if (yystack.s_mark >= yystack.s_last && yygrowstack(&yystack))
                 {
                     goto yyoverflow;
                 }
-                *++yyssp = yystate = yytable[yyn];
-                *++yyvsp = yylval;
+                yystate = yytable[yyn];
+                *++yystack.s_mark = yytable[yyn];
+                *++yystack.l_mark = yylval;
                 goto yyloop;
             }
             else
@@ -629,11 +686,11 @@ yyinrecovery:
 #if YYDEBUG
                 if (yydebug)
                     printf("%sdebug: error recovery discarding state %d\n",
-                            YYPREFIX, *yyssp);
+                            YYPREFIX, *yystack.s_mark);
 #endif
-                if (yyssp <= yyss) goto yyabort;
-                --yyssp;
-                --yyvsp;
+                if (yystack.s_mark <= yystack.s_base) goto yyabort;
+                --yystack.s_mark;
+                --yystack.l_mark;
             }
         }
     }
@@ -650,9 +707,10 @@ yyinrecovery:
                     YYPREFIX, yystate, yychar, yys);
         }
 #endif
-        yychar = (-1);
+        yychar = YYEMPTY;
         goto yyloop;
     }
+
 yyreduce:
 #if YYDEBUG
     if (yydebug)
@@ -660,74 +718,77 @@ yyreduce:
                 YYPREFIX, yystate, yyn, yyrule[yyn]);
 #endif
     yym = yylen[yyn];
-    yyval = yyvsp[1-yym];
+    if (yym)
+        yyval = yystack.l_mark[1-yym];
+    else
+        memset(&yyval, 0, sizeof yyval);
     switch (yyn)
     {
 case 1:
-#line 148 "qgen.y"
-{
+#line 160 "qgen.y"
+	{
 							AddQuerySegment(pCurrentQuery, "\n");
 							AddQuerySubstitution(pCurrentQuery, "_END", 0, 0);
 							AddQuerySegment(pCurrentQuery, "\n");
 						}
 break;
 case 3:
-#line 157 "qgen.y"
-{
+#line 169 "qgen.y"
+	{
 							if (is_set("DEBUG"))
 							{
-								if (yyvsp[0].intval != KW_DEFINE)
+								if (yystack.l_mark[0].intval != KW_DEFINE)
 								{
 									printf("STATUS: parsed %s statement at line %d\n", 
-										(yyvsp[0].intval == TOK_SQL)?"SQL":KeywordText(yyvsp[0].intval), pCurrentFile->line_number);
+										(yystack.l_mark[0].intval == TOK_SQL)?"SQL":KeywordText(yystack.l_mark[0].intval), pCurrentFile->line_number);
 								}
 							}
 						}
 break;
 case 4:
-#line 169 "qgen.y"
-{yyval.intval = KW_INCLUDE; }
+#line 181 "qgen.y"
+	{yyval.intval = KW_INCLUDE; }
 break;
 case 5:
-#line 170 "qgen.y"
-{yyval.intval = KW_DEFINE; }
+#line 182 "qgen.y"
+	{yyval.intval = KW_DEFINE; }
 break;
 case 6:
-#line 171 "qgen.y"
-{yyval.intval = TOK_SQL; }
+#line 183 "qgen.y"
+	{yyval.intval = TOK_SQL; }
 break;
 case 7:
-#line 172 "qgen.y"
-{yyval.intval = KW_DIST; }
+#line 184 "qgen.y"
+	{yyval.intval = KW_DIST; }
 break;
 case 8:
-#line 181 "qgen.y"
-{
-					if (include_file(yyvsp[0].strval, pCurrentQuery) < 0)
+#line 193 "qgen.y"
+	{
+					if (include_file(yystack.l_mark[0].strval, pCurrentQuery) < 0)
 						yyerror("File include failed");
 					}
 break;
 case 9:
-#line 186 "qgen.y"
-{
+#line 198 "qgen.y"
+	{
 					yywarn("System include not supported; using relative pathing");
-					if (include_file(yyvsp[-1].strval, pCurrentQuery) < 0)
+					if (include_file(yystack.l_mark[-1].strval, pCurrentQuery) < 0)
 						yyerror("File include failed");
 					}
 break;
 case 34:
-#line 247 "qgen.y"
-{
-						defineSubstitution(pCurrentQuery, yyvsp[-3].strval, yyvsp[-1].exprval);
+#line 259 "qgen.y"
+	{
+						defineSubstitution(pCurrentQuery, yystack.l_mark[-3].strval, yystack.l_mark[-1].exprval);
 						if (is_set("DEBUG"))
-							printf("STATUS: DEFINED %s\n", yyvsp[-3].strval);
+							printf("STATUS: DEFINED %s\n", yystack.l_mark[-3].strval);
 						}
 break;
 case 35:
-#line 253 "qgen.y"
-{
+#line 265 "qgen.y"
+	{
 						pSub = findSubstitution(pCurrentQuery, "_LIMIT", 0);
-						sprintf(tmpstr, "%d", yyvsp[-1].intval);
+						sprintf(tmpstr, "%d", yystack.l_mark[-1].intval);
 						ResetBuffer(pSub->pAssignment->Value.pBuf);
 						AddBuffer(pSub->pAssignment->Value.pBuf, tmpstr);
 						if (is_set("DEBUG"))
@@ -735,89 +796,89 @@ case 35:
 						}
 break;
 case 36:
-#line 265 "qgen.y"
-{
+#line 277 "qgen.y"
+	{
 						yyval.list = makeList(L_FL_TAIL, NULL);
-						addList(yyval.list, yyvsp[0].exprval);
+						addList(yyval.list, yystack.l_mark[0].exprval);
 						}
 break;
 case 37:
-#line 270 "qgen.y"
-{
-						addList(yyvsp[-2].list, yyvsp[0].exprval);
-						yyval.list = yyvsp[-2].list;
+#line 282 "qgen.y"
+	{
+						addList(yystack.l_mark[-2].list, yystack.l_mark[0].exprval);
+						yyval.list = yystack.l_mark[-2].list;
 						}
 break;
 case 38:
-#line 277 "qgen.y"
-{
-						yyval.exprval = MakeStringConstant(yyvsp[0].strval);
+#line 289 "qgen.y"
+	{
+						yyval.exprval = MakeStringConstant(yystack.l_mark[0].strval);
 						}
 break;
 case 39:
-#line 281 "qgen.y"
-{
-						yyval.exprval = MakeIntConstant(yyvsp[0].intval);
+#line 293 "qgen.y"
+	{
+						yyval.exprval = MakeIntConstant(yystack.l_mark[0].intval);
 						}
 break;
 case 41:
-#line 286 "qgen.y"
-{
-						yyval.exprval = MakeIntConstant(yyvsp[0].intval);
+#line 298 "qgen.y"
+	{
+						yyval.exprval = MakeIntConstant(yystack.l_mark[0].intval);
 						yyval.exprval->nFlags |= EXPR_FL_KEYWORD;
 						}
 break;
 case 42:
-#line 291 "qgen.y"
-{
-						yyval.exprval = getKeywordValue(yyvsp[-1].intval);
+#line 303 "qgen.y"
+	{
+						yyval.exprval = getKeywordValue(yystack.l_mark[-1].intval);
 						}
 break;
 case 43:
-#line 295 "qgen.y"
-{
-						yyval.exprval = MakeVariableReference(yyvsp[-3].strval, yyvsp[-2].intval);
+#line 307 "qgen.y"
+	{
+						yyval.exprval = MakeVariableReference(yystack.l_mark[-3].strval, yystack.l_mark[-2].intval);
 						}
 break;
 case 44:
-#line 299 "qgen.y"
-{
-						yyval.exprval = MakeVariableReference(yyvsp[-2].strval, yyvsp[-1].intval);
+#line 311 "qgen.y"
+	{
+						yyval.exprval = MakeVariableReference(yystack.l_mark[-2].strval, yystack.l_mark[-1].intval);
 						}
 break;
 case 45:
-#line 303 "qgen.y"
-{
+#line 315 "qgen.y"
+	{
 						yyval.exprval = MakeIntConstant(get_int("SCALE"));
 						}
 break;
 case 47:
-#line 310 "qgen.y"
-{
-						yyval.exprval = MakeFunctionCall(yyvsp[-3].intval, yyvsp[-1].list);
+#line 322 "qgen.y"
+	{
+						yyval.exprval = MakeFunctionCall(yystack.l_mark[-3].intval, yystack.l_mark[-1].list);
 						}
 break;
 case 48:
-#line 314 "qgen.y"
-{
-						yyval.exprval = MakeFunctionCall(yyvsp[-3].intval, yyvsp[-1].list);
+#line 326 "qgen.y"
+	{
+						yyval.exprval = MakeFunctionCall(yystack.l_mark[-3].intval, yystack.l_mark[-1].list);
 						}
 break;
 case 49:
-#line 318 "qgen.y"
-{
-						yyval.exprval = MakeFunctionCall(KW_TEXT, yyvsp[-1].list);
+#line 330 "qgen.y"
+	{
+						yyval.exprval = MakeFunctionCall(KW_TEXT, yystack.l_mark[-1].list);
 						}
 break;
 case 50:
-#line 322 "qgen.y"
-{
-						i = GetTableNumber(yyvsp[-1].strval);
+#line 334 "qgen.y"
+	{
+						i = GetTableNumber(yystack.l_mark[-1].strval);
 						if (i == -1)
 						{
-							i = distsize(yyvsp[-1].strval);
+							i = distsize(yystack.l_mark[-1].strval);
 							if (i == -1)
-								ReportError(QERR_BAD_NAME, yyvsp[-1].strval, 1);
+								ReportError(QERR_BAD_NAME, yystack.l_mark[-1].strval, 1);
 						}
 						else
 							i = getIDCount(i);
@@ -825,212 +886,212 @@ case 50:
 						}
 break;
 case 51:
-#line 335 "qgen.y"
-{
+#line 347 "qgen.y"
+	{
 						/* TODO: Need to convert this to DSS_HUGE */
-						i = GetTableNumber(yyvsp[-3].strval);
+						i = GetTableNumber(yystack.l_mark[-3].strval);
 						if (i == -1)
 						{
-							i = distsize(yyvsp[-3].strval);
+							i = distsize(yystack.l_mark[-3].strval);
 							if (i == -1)
-								ReportError(QERR_BAD_NAME, yyvsp[-3].strval, 1);
+								ReportError(QERR_BAD_NAME, yystack.l_mark[-3].strval, 1);
 						}
-						j = GetTableNumber(yyvsp[-1].strval);
+						j = GetTableNumber(yystack.l_mark[-1].strval);
 						if (i == -1)
-							ReportError(QERR_BAD_NAME, yyvsp[-1].strval, 1);
+							ReportError(QERR_BAD_NAME, yystack.l_mark[-1].strval, 1);
 						i = (int)getIDCount(i);
 						j = (int)getIDCount(j);
 						yyval.exprval = MakeIntConstant((i>j)?j:i);
 						}
 break;
 case 52:
-#line 352 "qgen.y"
-{
+#line 364 "qgen.y"
+	{
 						yyval.exprval = MakeIntConstant(getScaleSlot(get_int("SCALE")) + 1);
 						}
 break;
 case 53:
-#line 356 "qgen.y"
-{
-						yyval.exprval = MakeListExpr(KW_ULIST, yyvsp[-3].exprval, yyvsp[-1].intval);
+#line 368 "qgen.y"
+	{
+						yyval.exprval = MakeListExpr(KW_ULIST, yystack.l_mark[-3].exprval, yystack.l_mark[-1].intval);
 						}
 break;
 case 54:
-#line 360 "qgen.y"
-{
-						yyval.exprval = MakeListExpr(KW_LIST, yyvsp[-3].exprval, yyvsp[-1].intval);
+#line 372 "qgen.y"
+	{
+						yyval.exprval = MakeListExpr(KW_LIST, yystack.l_mark[-3].exprval, yystack.l_mark[-1].intval);
 						}
 break;
 case 55:
-#line 364 "qgen.y"
-{
-						yyval.exprval = MakeListExpr(KW_RANGE, yyvsp[-3].exprval, yyvsp[-1].intval);
+#line 376 "qgen.y"
+	{
+						yyval.exprval = MakeListExpr(KW_RANGE, yystack.l_mark[-3].exprval, yystack.l_mark[-1].intval);
 						}
 break;
 case 56:
-#line 370 "qgen.y"
-{
-						yyval.exprval = makeArithmeticExpr(OP_ADD, yyvsp[-2].exprval, yyvsp[0].exprval);
+#line 382 "qgen.y"
+	{
+						yyval.exprval = makeArithmeticExpr(OP_ADD, yystack.l_mark[-2].exprval, yystack.l_mark[0].exprval);
 						}
 break;
 case 57:
-#line 374 "qgen.y"
-{
-						yyval.exprval = makeArithmeticExpr(OP_SUBTRACT, yyvsp[-2].exprval, yyvsp[0].exprval);
+#line 386 "qgen.y"
+	{
+						yyval.exprval = makeArithmeticExpr(OP_SUBTRACT, yystack.l_mark[-2].exprval, yystack.l_mark[0].exprval);
 						}
 break;
 case 58:
-#line 378 "qgen.y"
-{
-						yyval.exprval = makeArithmeticExpr(OP_MULTIPLY, yyvsp[-2].exprval, yyvsp[0].exprval);
+#line 390 "qgen.y"
+	{
+						yyval.exprval = makeArithmeticExpr(OP_MULTIPLY, yystack.l_mark[-2].exprval, yystack.l_mark[0].exprval);
 						}
 break;
 case 59:
-#line 382 "qgen.y"
-{
-						yyval.exprval = makeArithmeticExpr(OP_DIVIDE, yyvsp[-2].exprval, yyvsp[0].exprval);
+#line 394 "qgen.y"
+	{
+						yyval.exprval = makeArithmeticExpr(OP_DIVIDE, yystack.l_mark[-2].exprval, yystack.l_mark[0].exprval);
 						}
 break;
 case 60:
-#line 387 "qgen.y"
-{
+#line 399 "qgen.y"
+	{
 						yyval.list = makeList(L_FL_TAIL, NULL);
-						addList(yyval.list, yyvsp[0].exprval);
+						addList(yyval.list, yystack.l_mark[0].exprval);
 						}
 break;
 case 61:
-#line 392 "qgen.y"
-{
+#line 404 "qgen.y"
+	{
 						yyval.list = makeList(L_FL_TAIL, NULL);
-						addList(yyval.list, MakeStringConstant(yyvsp[0].strval));
+						addList(yyval.list, MakeStringConstant(yystack.l_mark[0].strval));
 						}
 break;
 case 62:
-#line 397 "qgen.y"
-{
-						addList(yyvsp[-2].list, yyvsp[0].exprval);
-						yyval.list = yyvsp[-2].list;
+#line 409 "qgen.y"
+	{
+						addList(yystack.l_mark[-2].list, yystack.l_mark[0].exprval);
+						yyval.list = yystack.l_mark[-2].list;
 						}
 break;
 case 63:
-#line 402 "qgen.y"
-{
-						addList(yyvsp[-2].list, MakeStringConstant(yyvsp[0].strval));
-						yyval.list = yyvsp[-2].list;
+#line 414 "qgen.y"
+	{
+						addList(yystack.l_mark[-2].list, MakeStringConstant(yystack.l_mark[0].strval));
+						yyval.list = yystack.l_mark[-2].list;
 						}
 break;
 case 64:
-#line 408 "qgen.y"
-{yyval.intval = KW_DATE;}
+#line 420 "qgen.y"
+	{yyval.intval = KW_DATE;}
 break;
 case 65:
-#line 409 "qgen.y"
-{yyval.intval = KW_RANDOM;}
+#line 421 "qgen.y"
+	{yyval.intval = KW_RANDOM;}
 break;
 case 66:
-#line 412 "qgen.y"
-{yyval.intval = KW_DIST;}
+#line 424 "qgen.y"
+	{yyval.intval = KW_DIST;}
 break;
 case 67:
-#line 413 "qgen.y"
-{yyval.intval = KW_DISTMEMBER;}
+#line 425 "qgen.y"
+	{yyval.intval = KW_DISTMEMBER;}
 break;
 case 68:
-#line 414 "qgen.y"
-{yyval.intval = KW_DISTWEIGHT;}
+#line 426 "qgen.y"
+	{yyval.intval = KW_DISTWEIGHT;}
 break;
 case 69:
-#line 417 "qgen.y"
-{yyval.intval = KW_UNIFORM;}
+#line 429 "qgen.y"
+	{yyval.intval = KW_UNIFORM;}
 break;
 case 70:
-#line 418 "qgen.y"
-{yyval.intval = KW_SALES;}
+#line 430 "qgen.y"
+	{yyval.intval = KW_SALES;}
 break;
 case 71:
-#line 419 "qgen.y"
-{yyval.intval = KW_RETURNS;}
+#line 431 "qgen.y"
+	{yyval.intval = KW_RETURNS;}
 break;
 case 72:
-#line 422 "qgen.y"
-{yyval.intval = KW_QUERY;}
+#line 434 "qgen.y"
+	{yyval.intval = KW_QUERY;}
 break;
 case 73:
-#line 423 "qgen.y"
-{yyval.intval = KW_TEMPLATE;}
+#line 435 "qgen.y"
+	{yyval.intval = KW_TEMPLATE;}
 break;
 case 74:
-#line 424 "qgen.y"
-{yyval.intval = KW_STREAM;}
+#line 436 "qgen.y"
+	{yyval.intval = KW_STREAM;}
 break;
 case 75:
-#line 425 "qgen.y"
-{yyval.intval = KW_SEED;}
+#line 437 "qgen.y"
+	{yyval.intval = KW_SEED;}
 break;
 case 76:
-#line 429 "qgen.y"
-{
+#line 441 "qgen.y"
+	{
 						yyval.list = makeList(L_FL_TAIL, NULL);
-						addList(yyval.list, yyvsp[0].exprval);
+						addList(yyval.list, yystack.l_mark[0].exprval);
 						}
 break;
 case 77:
-#line 434 "qgen.y"
-{
-						addList(yyval.list, yyvsp[0].exprval);
-						yyval.list = yyvsp[-2].list;
+#line 446 "qgen.y"
+	{
+						addList(yyval.list, yystack.l_mark[0].exprval);
+						yyval.list = yystack.l_mark[-2].list;
 						}
 break;
 case 78:
-#line 441 "qgen.y"
-{
-						yyval.exprval = MakeReplacement(yyvsp[-3].strval, yyvsp[-1].intval);
+#line 453 "qgen.y"
+	{
+						yyval.exprval = MakeReplacement(yystack.l_mark[-3].strval, yystack.l_mark[-1].intval);
 						}
 break;
 case 79:
-#line 454 "qgen.y"
-{
+#line 466 "qgen.y"
+	{
 							pSegment = getTail(pCurrentQuery->SegmentList);
 							pSegment->flags |= QS_EOS;
 							}
 break;
 case 81:
-#line 463 "qgen.y"
-{
-							if ((nRetCode = AddQuerySegment(pCurrentQuery, yyvsp[0].strval)) != 0)
+#line 475 "qgen.y"
+	{
+							if ((nRetCode = AddQuerySegment(pCurrentQuery, yystack.l_mark[0].strval)) != 0)
 								yyerror("SQL parse failed");
 							}
 break;
 case 83:
-#line 470 "qgen.y"
-{
-							if ((nRetCode = AddQuerySegment(pCurrentQuery, yyvsp[0].strval)) != 0)
+#line 482 "qgen.y"
+	{
+							if ((nRetCode = AddQuerySegment(pCurrentQuery, yystack.l_mark[0].strval)) != 0)
 								yyerror("SQL parse failed");
 							}
 break;
 case 84:
-#line 477 "qgen.y"
-{
-							if ((nRetCode = AddQuerySubstitution(pCurrentQuery, yyvsp[-2].strval, 0, yyvsp[-1].intval)) < 0)
+#line 489 "qgen.y"
+	{
+							if ((nRetCode = AddQuerySubstitution(pCurrentQuery, yystack.l_mark[-2].strval, 0, yystack.l_mark[-1].intval)) < 0)
 								{
-								sprintf(tmpstr, "Substitution match failed on %s", yyvsp[-2].strval);
+								sprintf(tmpstr, "Substitution match failed on %s", yystack.l_mark[-2].strval);
 								yyerror(tmpstr);
 								}
 						}
 break;
 case 85:
-#line 485 "qgen.y"
-{
-							if ((nRetCode = AddQuerySubstitution(pCurrentQuery, yyvsp[-3].strval, yyvsp[-2].intval, yyvsp[-1].intval)) < 0)
+#line 497 "qgen.y"
+	{
+							if ((nRetCode = AddQuerySubstitution(pCurrentQuery, yystack.l_mark[-3].strval, yystack.l_mark[-2].intval, yystack.l_mark[-1].intval)) < 0)
 								{
-								sprintf(tmpstr, "Substitution match failed on %s", yyvsp[-3].strval);
+								sprintf(tmpstr, "Substitution match failed on %s", yystack.l_mark[-3].strval);
 								yyerror(tmpstr);
 								}
 						}
 break;
 case 86:
-#line 493 "qgen.y"
-{
+#line 505 "qgen.y"
+	{
 							if ((nRetCode = AddQuerySubstitution(pCurrentQuery, "_QUERY", 0, 0)) < 0)
 								{
 								yyerror("Lookup of predefined constant failed");
@@ -1038,8 +1099,8 @@ case 86:
 						}
 break;
 case 87:
-#line 500 "qgen.y"
-{
+#line 512 "qgen.y"
+	{
 							if ((nRetCode = AddQuerySubstitution(pCurrentQuery, "_STREAM", 0, 0)) < 0)
 								{
 								yyerror("Lookup of predefined constant failed");
@@ -1047,8 +1108,8 @@ case 87:
 						}
 break;
 case 88:
-#line 507 "qgen.y"
-{
+#line 519 "qgen.y"
+	{
 							if ((nRetCode = AddQuerySubstitution(pCurrentQuery, "_TEMPLATE", 0, 0)) < 0)
 								{
 								yyerror("Lookup of predefined constant failed");
@@ -1056,8 +1117,8 @@ case 88:
 						}
 break;
 case 89:
-#line 514 "qgen.y"
-{
+#line 526 "qgen.y"
+	{
 							if ((nRetCode = AddQuerySubstitution(pCurrentQuery, "_SEED", 0, 0)) < 0)
 								{
 								yyerror("Lookup of predefined constant failed");
@@ -1065,8 +1126,8 @@ case 89:
 						}
 break;
 case 90:
-#line 521 "qgen.y"
-{
+#line 533 "qgen.y"
+	{
 							if ((nRetCode = AddQuerySubstitution(pCurrentQuery, "_LIMITA", 0, 0)) < 0)
 								{
 								yyerror("Lookup of predefined constant failed");
@@ -1074,8 +1135,8 @@ case 90:
 						}
 break;
 case 91:
-#line 528 "qgen.y"
-{
+#line 540 "qgen.y"
+	{
 							if ((nRetCode = AddQuerySubstitution(pCurrentQuery, "_LIMITB", 0, 0)) < 0)
 								{
 								yyerror("Lookup of predefined constant failed");
@@ -1083,8 +1144,8 @@ case 91:
 						}
 break;
 case 92:
-#line 535 "qgen.y"
-{
+#line 547 "qgen.y"
+	{
 							if ((nRetCode = AddQuerySubstitution(pCurrentQuery, "_LIMITC", 0, 0)) < 0)
 								{
 								yyerror("Lookup of predefined constant failed");
@@ -1092,30 +1153,30 @@ case 92:
 						}
 break;
 case 93:
-#line 543 "qgen.y"
-{yyval.intval = 0;}
+#line 555 "qgen.y"
+	{yyval.intval = 0;}
 break;
 case 94:
-#line 544 "qgen.y"
-{yyval.intval = 0;}
+#line 556 "qgen.y"
+	{yyval.intval = 0;}
 break;
 case 95:
-#line 545 "qgen.y"
-{yyval.intval = 1;}
+#line 557 "qgen.y"
+	{yyval.intval = 1;}
 break;
 case 96:
-#line 546 "qgen.y"
-{yyval.intval = yyvsp[0].intval;}
+#line 558 "qgen.y"
+	{yyval.intval = yystack.l_mark[0].intval;}
 break;
 case 97:
-#line 554 "qgen.y"
-{ yyval.strval = yyvsp[0].strval; }
+#line 566 "qgen.y"
+	{ yyval.strval = yystack.l_mark[0].strval; }
 break;
-#line 1102 "y.tab.c"
+#line 1175 "y.tab.c"
     }
-    yyssp -= yym;
-    yystate = *yyssp;
-    yyvsp -= yym;
+    yystack.s_mark -= yym;
+    yystate = *yystack.s_mark;
+    yystack.l_mark -= yym;
     yym = yylhs[yyn];
     if (yystate == 0 && yym == 0)
     {
@@ -1125,11 +1186,11 @@ break;
  state %d\n", YYPREFIX, YYFINAL);
 #endif
         yystate = YYFINAL;
-        *++yyssp = YYFINAL;
-        *++yyvsp = yyval;
+        *++yystack.s_mark = YYFINAL;
+        *++yystack.l_mark = yyval;
         if (yychar < 0)
         {
-            if ((yychar = yylex()) < 0) yychar = 0;
+            if ((yychar = YYLEX) < 0) yychar = 0;
 #if YYDEBUG
             if (yydebug)
             {
@@ -1152,19 +1213,24 @@ break;
 #if YYDEBUG
     if (yydebug)
         printf("%sdebug: after reduction, shifting from state %d \
-to state %d\n", YYPREFIX, *yyssp, yystate);
+to state %d\n", YYPREFIX, *yystack.s_mark, yystate);
 #endif
-    if (yyssp >= yysslim && yygrowstack())
+    if (yystack.s_mark >= yystack.s_last && yygrowstack(&yystack))
     {
         goto yyoverflow;
     }
-    *++yyssp = yystate;
-    *++yyvsp = yyval;
+    *++yystack.s_mark = (short) yystate;
+    *++yystack.l_mark = yyval;
     goto yyloop;
+
 yyoverflow:
     yyerror("yacc stack overflow");
+
 yyabort:
+    yyfreestack(&yystack);
     return (1);
+
 yyaccept:
+    yyfreestack(&yystack);
     return (0);
 }
