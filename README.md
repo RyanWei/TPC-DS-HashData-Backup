@@ -43,9 +43,9 @@ Visit the repo at https://github.com/RyanWei/TPC-DS-HashData/releases/and downlo
 
 ```bash
 ssh gpadmin@mdw
-curl -LO https://github.com/RyanWei/TPC-DS-HashData/archive/refs/tags/v0.1.zip
-unzip v0.1.zip
-mv TPC-DS-HashData-0.1 TPC-DS
+curl -LO https://github.com/RyanWei/TPC-DS-HashData/archive/refs/tags/v1.1.tar.gz
+tar xzf v1.1.tar.gz
+mv TPC-DS-HashData-1.1 TPC-DS
 ```
 Put the folder under /home/gpadmin/ and change owner to gpadmin.
 
