@@ -39,7 +39,7 @@ The original source code is from http://tpc.org/tpc_documents_current_versions/c
 
 ### Download and Install
 
-Visit the repo at https://github.com/RyanWei/TPC-DS-HashData/releases/and download the tarball to the `mdw` node. 
+Visit the repo at https://github.com/RyanWei/TPC-DS-HashData/releases/and download the tarball to the `mdw` node. You can always use the latest version.
 
 ```bash
 ssh gpadmin@mdw
@@ -232,6 +232,12 @@ Example of running the benchmark as `root` as a background process:
 ```bash
 nohup ./tpcds.sh > tpcds.log 2>&1 < tpcds.log &
 ```
+
+### Play with different options
+- Change different storage options in `functions.sh` to try with different compress options and whether use AO/CO storage.
+- Replace some of the tables' DDL with the `*.sql.partition` files in folder `03_ddl` to use partition for some of the non-dimension tables. No partition is used by default.
+- Steps `RUN_COMPILE_TPCDS` and `RUN_GEN_DATA` only need to be executed once. 
+
 
 ## Benchmark Minor Modifications
 
