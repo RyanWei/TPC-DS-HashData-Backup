@@ -1,6 +1,6 @@
 # Decision Support Benchmark for HashData database.
 
-This tool is based on the benchmark tool derived from [pivotal TPC-DS](https://github.com/pivotal/TPC-DS).
+This tool is based on the benchmark tool [pivotal TPC-DS](https://github.com/pivotal/TPC-DS).
 This repo contains automation of running the DS benchmark on an existing Hashdata cluster.
 
 ## Context
