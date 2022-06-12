@@ -4,7 +4,7 @@ export BENCH_ROLE="dsbench"
 
 # benchmark options
 export GEN_DATA_SCALE="1"
-export MULTI_USER_COUNT="1"
+export MULTI_USER_COUNT="2"
 
 # step options
 export RUN_COMPILE_TPCDS="true"
