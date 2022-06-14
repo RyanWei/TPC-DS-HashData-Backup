@@ -12,6 +12,8 @@ init_log ${step}
 
 sql_dir=${PWD}/${session_id}
 
+schema_name=tpcds
+
 function generate_queries()
 {
 	#going from 1 base to 0 base
@@ -37,8 +39,8 @@ function generate_queries()
 		filename=${file_id}.${BENCH_ROLE}.${q}.sql
 
 		#add explain analyze 
-		echo "print \"set role ${BENCH_ROLE};\\n:EXPLAIN_ANALYZE\\n\" > ${sql_dir}/${filename}"
-		printf "set role ${BENCH_ROLE};\n:EXPLAIN_ANALYZE\n" > ${sql_dir}/${filename}
+		echo "print \"set role ${BENCH_ROLE};\\nset search_path=$schema_name,public;\\n:EXPLAIN_ANALYZE\\n\" > ${sql_dir}/${filename}"
+		printf "set role ${BENCH_ROLE};\nset search_path=$schema_name,public;\n:EXPLAIN_ANALYZE\n" > ${sql_dir}/${filename}
 
 		echo "sed -n ${start_position},${end_position}p ${sql_dir}/${tpcds_query_name} >> ${sql_dir}/${filename}"
 		sed -n ${start_position},${end_position}p ${sql_dir}/${tpcds_query_name} >> ${sql_dir}/${filename}
